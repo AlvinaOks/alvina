@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="#" title=''>Текст для 1 ссылки</a>
+    <br>
+    <a href="##" title=''>Текст для 2 ссылки</a>
+    <br>
+    <a href="###" title=''>Текст для 3 ссылки</a>
+    <br><br><br>
+
+    <a href="https://google.com" title=''>Текст первой</a>
+    <br>
+    <a href="https://google.com" title=''>Текст второй</a>
+    <br>
+    <a href="https://google.com" title=''>Текст третьей</a>
+    <br>
+    <a href="https://google.com" title=''>Текст четвертой</a>
+    <br>
+    <a href="https://google.com" title=''>Текст пятой</a>
+
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+    </ul>
+
+
+
+    <script>
+        //1. Даны ссылки. Привяжите всем ссылкам событие - каждый раз по наведению на ссылку в конец атрибута title запишется её текст.
+        const funct = (event) => {
+            event.preventDefault();
+            let refer = event.target.getAttribute('title')
+            console.log(refer)
+            event.target.title = event.target.innerText + refer
+        }
+        let elems = document.getElementsByTagName('a');
+        for (let i = 0; i < elems.length; i++) {
+            elems[i].addEventListener("mouseover", funct)
+        }
+    </script>
+
+
+    <script>
+        //2. 5 ссылок. Привяжите всем ссылкам событие онклик - по клику на ссылку в конец ее текста дописывается ее href в круглых скобках. Внутри href должно быть по умолчанию https://google.com
+        //3. 5 ссылок как и в задаче 2. после трех кликов на ссылку следует убрать от нее событие, которое добавляет href в конец текста как в предыдушей задачи
+
+        var elem = document.getElementsByTagName('a');
+        const preventD = (e) => {
+            e.preventDefault();
+        }
+        var count = 0;
+        const f = (e) => {
+            ++count;
+            var refer = ' (' + e.target.getAttribute('href') + ')';
+            e.target.innerHTML = e.target.innerHTML + refer;
+            if (count >= 3) {
+                console.log(count);
+                e.target.removeEventListener("click", f);
+            }
+        }
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].addEventListener("click", f);
+            elem[i].addEventListener("click", preventD);
+        }
+    </script>
+
+
+    <script>
+        //4. Дано 20 абзацов с числами от 1 до 20. По нажатию на абзац в нем должен появится квадрат числа, которое он содержит.Так же написать мне код Emmet(как генерировать 20 абзацов). Разраешается написать 2 строки кода в js
+        const fun = (e) => {
+            e.target.innerHTML = e.target.innerHTML * e.target.innerHTML;
+        }
+        var el = document.getElementsByTagName('li');
+        for (var i = 0; i < el.length; i++) {
+            el[i].addEventListener('click', fun);
+        }
+
+    </script>
+
+
+</body>
+
+</html>
