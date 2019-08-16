@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://google.com" title=''>Текст первой</a>
+    <br>
+    <a href="https://google.com" title=''>Текст второй</a>
+    <br>
+    <a href="https://google.com" title=''>Текст третьей</a>
+    <br>
+    <a href="https://google.com" title=''>Текст четвертой</a>
+    <br>
+    <a href="https://google.com" title=''>Текст пятой</a>
+
+    <script>
+        //3.  Привяжите 5-ти ссылкам событие онклик - по клику на ссылку в конец ее текста дописывается ее href в круглых скобках. Внутри href должно быть по умолчанию https://google.com. Написать через замыкание! Приветсвуется самый короткий код не больше 100 символов на одной строке
+        //4.5 ссылок как и в задаче 3. после трех кликов на ссылку следует убрать от нее событие, которое добавляет href в конец текста как в предыдушей задачи. Написать через замыкание!!!! Приветсвуется самый короткий код не больше 100 символов на одной строке
+        let elem = document.getElementsByTagName('a');
+        var count = 0;
+        var copyElements= [];
+         for (let i = 0; i < elem.length; i++){
+          copyElements += elem[i].innerText + ',';
+          copyElements = copyElements.split(/\s*,\s*/);
+}
+        const preventD = (e) => {
+            e.preventDefault();
+        }
+        const f = (e) => {
+            ++count;
+            let refer = ' (' + e.target.getAttribute('href') + ')';
+
+            let func=()=>{
+                
+            e.target.innerHTML = e.target.innerHTML + refer;
+
+            if (count >= 3) {
+                console.log(count);
+                e.target.removeEventListener("click", f);
+         for (let i = 0; i < elem.length; i++){
+          elem[i].innerHTML = copyElements[i];
+}
+            }
+
+            }
+            func();
+        }
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].addEventListener("click", f);
+            elem[i].addEventListener("click", preventD);
+        }
+    </script>
+
+
+    <script>
+        //1. Дано два array. Сделать один массив через spread(...)
+        let arr = [1, 2, 4, 6]
+        let arr1 = [5, 6, 8, 9]
+        let newArray = [...arr, ...arr1]
+        console.log(newArray)
+    </script>
+
+    <script>
+        //2.Дано два array. Сделать один массив через spread(...) и поменять их местами
+        let array = [1, 2, 4, 6]
+        let array1 = [5, 6, 8, 9]
+        let newArray1 = [...array, ...array1]
+        console.log(newArray1.reverse())
+    </script>
+</body>
+
+</html>
